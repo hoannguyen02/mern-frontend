@@ -8,7 +8,10 @@
   },
   "rules": {
     "arrow-parens": 0,
+    "import/prefer-default-export": "off",
     "comma-dangle": ["error", "never"],
+    "react/jsx-one-expression-per-line": "off",
+    "react/forbid-prop-types": "off",
     "object-curly-newline": [
       "error",
       {
@@ -19,6 +22,8 @@
   },
   "extends": [
     "eslint:recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
     "plugin:prettier/recommended",
     "airbnb",
     "airbnb/hooks"
