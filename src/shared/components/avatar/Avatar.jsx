@@ -21,12 +21,21 @@ const Avatar = props => {
 };
 
 Avatar.propTypes = {
-  image: PropTypes.string.isRequired,
-  className: PropTypes.string.isRequired,
-  alt: PropTypes.string.isRequired,
-  style: PropTypes.object.isRequired,
-  width: PropTypes.string.isRequired,
-  height: PropTypes.string.isRequired
+  image: PropTypes.string,
+  className: PropTypes.string,
+  alt: PropTypes.string,
+  style: PropTypes.object,
+  width: PropTypes.string,
+  height: PropTypes.string
+};
+
+Avatar.defaultProps = {
+  image: null,
+  className: '',
+  alt: '',
+  style: {},
+  width: '',
+  height: ''
 };
 
 export default Avatar;

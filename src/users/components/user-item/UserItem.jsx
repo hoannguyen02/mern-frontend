@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-import { UserCard, Avatar } from '../../../shared/components';
+import { Avatar, UserCard } from '../../../shared/components';
 
 import './UserItem.css';
 
@@ -32,7 +32,7 @@ UserItem.propTypes = {
   id: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  placeCount: PropTypes.string.isRequired
+  placeCount: PropTypes.number.isRequired
 };
 
 export default UserItem;

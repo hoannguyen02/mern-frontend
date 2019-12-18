@@ -7,6 +7,7 @@
     }
   },
   "rules": {
+    "import/named": 2,
     "arrow-parens": 0,
     "import/prefer-default-export": "off",
     "comma-dangle": ["error", "never"],
@@ -27,5 +28,10 @@
     "plugin:prettier/recommended",
     "airbnb",
     "airbnb/hooks"
-  ]
+  ],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "plugins": ["import"]
 }
