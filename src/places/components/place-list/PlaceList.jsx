@@ -1,17 +1,18 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
-import PropTypes from 'prop-types';
-import { UserCard } from '../../../shared/components';
-import PlaceItem from '../place-item/PlaceItem';
+
+import { UserCard, Button } from '../../../shared/components';
+import PlaceItem from '../place-item';
 import './PlaceList.css';
 
 const PlaceList = props => {
-  const { items } = props;
-  if (items.length === 0) {
+  if (props.items.length === 0) {
     return (
       <div className="place-list center">
         <UserCard>
           <h2>No places found. Maybe create one?</h2>
-          <button type="button">Share Place</button>
+          <Button to="/places/new">Share Place</Button>
         </UserCard>
       </div>
     );
@@ -19,7 +20,7 @@ const PlaceList = props => {
 
   return (
     <ul className="place-list">
-      {items.map(place => (
+      {props.items.map(place => (
         <PlaceItem
           key={place.id}
           id={place.id}
@@ -33,14 +34,6 @@ const PlaceList = props => {
       ))}
     </ul>
   );
-};
-
-PlaceList.propTypes = {
-  items: PropTypes.array
-};
-
-PlaceList.defaultProps = {
-  items: []
 };
 
 export default PlaceList;

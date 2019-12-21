@@ -1,3 +1,4 @@
+/* eslint-disable import/export */
 export { default as PlaceItem } from './place-item';
 export * from './place-item';
 
