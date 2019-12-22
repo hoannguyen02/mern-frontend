@@ -1,22 +1,34 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
-  Redirect
+  Redirect,
+  Switch
 } from 'react-router-dom';
-import './App.css';
+
 import Users from './users/pages/Users';
 import NewPlace from './places/pages/NewPlace';
 import UserPlaces from './places/pages/UserPlaces';
 import UpdatePlace from './places/pages/UpdatePlace';
+import Navigation from './shared/components/navigation';
+import Auth from './users/pages/Auth';
+import { AuthContext } from './shared/context/auth-context';
 
-import { Navigation } from './shared/components/navigation';
+const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-const App = () => (
-  <Router>
-    <Navigation />
-    <main>
+  const login = useCallback(() => {
+    setIsLoggedIn(true);
+  }, []);
+
+  const logout = useCallback(() => {
+    setIsLoggedIn(false);
+  }, []);
+
+  let routes;
+
+  if (isLoggedIn) {
+    routes = (
       <Switch>
         <Route path="/" exact>
           <Users />
@@ -24,7 +36,6 @@ const App = () => (
         <Route path="/:userId/places" exact>
           <UserPlaces />
         </Route>
-
         <Route path="/places/new" exact>
           <NewPlace />
         </Route>
@@ -33,8 +44,32 @@ const App = () => (
         </Route>
         <Redirect to="/" />
       </Switch>
-    </main>
-  </Router>
-);
+    );
+  } else {
+    routes = (
+      <Switch>
+        <Route path="/" exact>
+          <Users />
+        </Route>
+        <Route path="/:userId/places" exact>
+          <UserPlaces />
+        </Route>
+        <Route path="/auth">
+          <Auth />
+        </Route>
+        <Redirect to="/auth" />
+      </Switch>
+    );
+  }
+
+  return (
+    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+      <Router>
+        <Navigation />
+        <main>{routes}</main>
+      </Router>
+    </AuthContext.Provider>
+  );
+};
 
 export default App;

@@ -19,3 +19,6 @@ export * from './input';
 
 export { default as Map } from './map';
 export * from './map';
+
+export { default as Navigation } from './navigation';
+export * from './navigation';
